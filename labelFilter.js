@@ -3,7 +3,7 @@
 try { angular.module("kubernetesUI") } catch(e) { angular.module("kubernetesUI", []) }
 
 angular.module('kubernetesUI')
-.factory('LabelFilter', function($location) {
+.factory('LabelFilter', function($location, gettext, gettextCatalog) {
   function LabelFilter() {
     this._existingLabels = {};
     this._labelSelector = new LabelSelector(null, true);
@@ -137,7 +137,7 @@ angular.module('kubernetesUI')
 
     this._labelFilterKeyInput = $('<select>')
       .addClass("label-filter-key")
-      .attr("placeholder", "Filter by label ")
+      .attr("placeholder", gettextCatalog.getString(gettext('Filter by label')) + ' ')
       .appendTo(labelFilterElem);
 
     this._labelFilterOperatorInput = $('<select>')
@@ -159,7 +159,7 @@ angular.module('kubernetesUI')
       .appendTo(filterInputElement)
       .append(
         $('<span>')
-          .text(opts.addButtonText || "Add Filter")
+          .text(opts.addButtonText || gettextCatalog.getString(gettext("Add Filter")))
       );
 
     this._labelFilterActiveFiltersElement = $('<span>')
