@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: labelFilter.js:162
+msgid "Add Filter"
+msgstr ""
+
+#: labelFilter.js:140
+msgid "Filter by label"
+msgstr ""

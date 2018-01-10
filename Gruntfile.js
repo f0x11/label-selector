@@ -72,14 +72,50 @@ module.exports = function(grunt) {
           paths: ['styles']
         }
       }
-    }    
+    },
+
+    // Settings for gettext
+    nggettext_extract: {
+      pot: {
+        files: {
+          'po/openshift.pot': ['labelFilter.js']
+        }
+      }
+    },
+
+    nggettext_compile: {
+      all: {
+        options: {
+          format: "json"
+        },
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: "po",
+            dest: "languages",
+            src: ["*.po"],
+            ext: ".json"
+          }
+        ]
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-wiredep');  
+  grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-angular-gettext');
+
+  grunt.registerTask('update-pot', [
+    'nggettext_extract'
+  ]);
+
+  grunt.registerTask('read-po', [
+    'nggettext_compile'
+  ]);
 
   grunt.registerTask('serve', [
     'less',
